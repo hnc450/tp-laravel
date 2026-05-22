@@ -15,6 +15,10 @@ class HomeController extends Controller
     public function articles(){
         return view('posts.articles');
     }
+
+    public function article(string $slug){
+        return view('posts.show', ['slug' => $slug]);
+    }
     public function categories(){
         return view('posts.categories');
     }

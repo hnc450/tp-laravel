@@ -12,17 +12,9 @@
 </head>
 
 <body>
+  @include('layouts.header')
 
-    <nav>
-        <a href="index.html" class="nav-logo">Le Blog</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="articles-public.html">Articles</a></li>
-            <li><a href="categories-public.html" class="active">Catégories</a></li>
-            <li><a href="about.html">À propos</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-        </ul>
-    </nav>
+
 
     <div class="page-header">
         <div class="page-tag">Explorer</div>

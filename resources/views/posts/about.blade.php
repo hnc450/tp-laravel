@@ -13,16 +13,7 @@
 
 <body>
 
-    <nav>
-        <a href="index.html" class="nav-logo">Le Blog</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="articles-public.html">Articles</a></li>
-            <li><a href="categories-public.html">Catégories</a></li>
-            <li><a href="about.html" class="active">À propos</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-        </ul>
-    </nav>
+    @include('layouts.header')
 
     <!-- HERO -->
     <div class="about-hero">
