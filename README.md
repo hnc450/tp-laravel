@@ -162,14 +162,16 @@ Chaque méthode doit retourner sa vue correspondante avec `return view('...')`.
 **Questions :**
 
 1. Quelle est la commande artisan pour générer un contrôleur ? Quelle option ajouter pour générer directement un **contrôleur de ressource** avec toutes les méthodes CRUD ?
+### R) - php artisan make:controller NameController , - php artisan make:controller NameController --resource 
 2. Quelle est la convention de nommage des méthodes d'un contrôleur de ressource Laravel (`index`, `show`, `create`, `store`, `edit`, `update`, `destroy`) ? À quelle action correspond chacune ?
+### R) index -> affiche une la totalités des articles dans le cas de notre blog , show -> affiche un article en particulier , store -> permet d inserer un article dans la bdd , edit affiche le formulaire de modification d un article , update -> un peu comme store sauf que lui c est pour la mise à jour , create -> affiche le formulaire d ajout de notre article 
 3. Quelle est la différence entre ces trois façons de passer des données à une vue depuis un contrôleur ?
    ```php
    return view('articles', ['posts' => $posts]);
    return view('articles', compact('posts'));
    return view('articles')->with('posts', $posts);
    ```
-
+### R)  le premier passe un tableau associatif avec une valeur , le seconde transforme une variable en table associatif , le dernier met la valeur de la variable $posts dans posts
 ---
 
 ### Question 7 — Liens et navigation
