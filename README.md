@@ -49,6 +49,8 @@ Chaque root doit utiliser les directives `@yield` pour définir les zones dynami
 2. Pourquoi utilise-t-on `@extends` plutôt que d'inclure le header et le footer manuellement dans chaque fichier de vue ?
 ### R) C'est pour eviter la repetition et avoir un controller sur les composants que l on crée
 3. Comment s'assure-t-on qu'une vue du dashboard n'étende jamais accidentellement le layout public ?
+### R) On doit forcer l’héritage du layout dashboard avec @extends('Dashboard') dans toutes les vues de l admin.
+
 
 ---
 
@@ -76,7 +78,9 @@ Chaque root doit utiliser les directives `@yield` pour définir les zones dynami
 **Questions :**
 
 1. Comment rendre la classe `active` d'un lien de la sidebar **dynamique** selon la route courante, en utilisant `request()->routeIs()` ou `Route::currentRouteName()` ?
+### R) En vérifiant la route courante dans la vue, par exemple `class="{{ request()->routeIs('dashboard.articles') ? 'active' : '' }}"` ou `class="{{ Route::currentRouteName() === 'dashboard.articles' ? 'active' : '' }}"`.
 2. Pourquoi est-il préférable de placer les composants du dashboard dans un sous-dossier `components/dashboard/` plutôt que directement dans `components/` ?
+### R) Pour organiser le code, séparer clairement les pages admin des pages publique et éviter les collisions de noms entre composants qui servent des parties différentes du site.
 
 ---
 
@@ -99,8 +103,12 @@ Dans le fichier `routes/web.php`, déclarez une route nommée pour chacune des v
 1. Quelle est la différence entre `Route::get()` et `Route::post()` ? Dans quel cas utilise-t-on l'un plutôt que l'autre ?
 ### R) La différence  est dans l appel de la methode http , l un repond en get  et l autre en post , on utlise la méthode get quand on veut recuperer une information (lire or read) , et post quand on veut crée une ressource et la stockée
 2. Comment déclarer et nommer une route avec la méthode `->name()` ? Pourquoi les noms de routes sont-ils indispensables pour utiliser `route()` dans les vues Blade ?
+### R) On déclare la route avec `Route::get('/articles', [HomeController::class, 'articles'])->name('articles.index');` et on utilise `route('articles.index')` dans Blade. Les noms de routes sont indispensables parcequ' ils permettent de générer les URLs de façon fiable sans le mettre  en dur.
 3. Qu'est-ce qu'un paramètre de route dynamique comme `{id}` ? Comment le récupérer dans le contrôleur ?
+### R) C est un paramettre qui varit et qui permet de recuperer une ressource avec un identifiant , il suffit de creer une variable $id dans la function du controller ou dans la callback passer en second paramettre  lors de la creaion de la route
 4. Que se passe-t-il si deux routes ont la même URL mais des méthodes HTTP différentes (`GET` et `POST`) ?
+
+### R) les 2 routes auront le meme nom mais pour qu elles puissent etre appeler il faudra utiliser la methode http qu il faut pour les appelées
 
 ---
 
@@ -135,6 +143,7 @@ Exemple de routes attendues :
 2. Quelle est la différence entre `Route::prefix()` et `Route::middleware()` dans un groupe de routes ?
 ### R) Route::prefix() permet de prefixer le début d une url , alors que Route::middleware() permet de determiner qui peut passer en gros ça permet d utliser les middlewares qui se mets entre une request et la reponse
 3. Qu'est-ce que `Route::resource()` ? Pour quelles ressources (articles, catégories, utilisateurs) serait-il pertinent de l'utiliser et quelles routes génère-t-il automatiquement ?
+### R) `Route::resource()` crée automatiquement toutes les routes CRUD standard pour un contrôleur de ressource. Pour `articles`, `categories` ou `users`, il est pertinent de l'utiliser car ces ressources suivent le modèle CRUD et il génère des routes comme `index`, `create`, `store`, `show`, `edit`, `update` et `destroy`.
 
 ---
 
