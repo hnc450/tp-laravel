@@ -43,8 +43,9 @@
     <div class="main-layout">
         <div class="articles-col">
             <div class="articles-list">
+                
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Optio</div>
                         <div class="ai-title">Excepturi eligendi aliquid iste laboriosam et soluta cum</div>
@@ -55,8 +56,10 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c1">E</div>
-                </a>
+                </a> -->
 
+
+                <!-- 
                 <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Aperiam</div>
@@ -67,9 +70,9 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c2">A</div>
-                </a>
+                </a> -->
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Optio</div>
                         <div class="ai-title">Dignissimos et eaque aut sed fugiat et</div>
@@ -80,9 +83,9 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c3">D</div>
-                </a>
+                </a> -->
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Aperiam</div>
                         <div class="ai-title">Velit ad quo quo vel</div>
@@ -92,9 +95,9 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c4">V</div>
-                </a>
+                </a> -->
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Vitae</div>
                         <div class="ai-title">Sed molestiae omnis ratione ea enim ea</div>
@@ -104,9 +107,9 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c5">S</div>
-                </a>
+                </a> -->
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Dignissimos</div>
                         <div class="ai-title">Blanditiis commodi qui iure optio</div>
@@ -117,9 +120,9 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c1">B</div>
-                </a>
+                </a> -->
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Tenetur</div>
                         <div class="ai-title">Ut iusto et veniam facere maxime</div>
@@ -129,19 +132,40 @@
                                 commentaires</span></div>
                     </div>
                     <div class="ai-thumb c2">U</div>
-                </a>
+                </a> -->
 
-                <a href="article.html" class="article-item">
+                <!-- <a href="article.html" class="article-item">
                     <div>
                         <div class="ai-cat">Vitae</div>
                         <div class="ai-title">Tempore aut est ad iste excepturi</div>
                         <div class="ai-excerpt">Voluptatem recusandae odit eum ea eius voluptates et. Eum enim nobis
                             fugiat saepe vel eveniet. Et esse enim non eos magnam reprehenderit exercitationem.</div>
-                        <div class="ai-meta"><span>Shaun Balistreri</span><span>23 juin 1977</span><span>5
-                                commentaires</span></div>
+                        <div class="ai-meta">
+                            <span>Shaun Balistreri</span>
+                            <span>23 juin 1977</span>
+                            <span>5commentaires</span>
+                            </div>
                     </div>
                     <div class="ai-thumb c3">T</div>
                 </a>
+                
+                -->
+
+            @foreach($articles as $article)
+              <a href="{{ route('articles.show',['slug' => $article->slug ])}}" class="article-item">
+                  <div>
+                      <div class="ai-cat">Vitea</div>
+                      <div class="ai-title">{{ $article->title}}></div>
+                      <div class="ai-excerpt">{{ $article->content}}</div>
+                          <div class="ai-meta">
+                              <span>{{ $article->user->name}}</span>
+                              <span>{{ $article->created_at}}</span>
+                              <span>{{ $article->comment->count()}} commentaires</span>
+                          </div>
+                  <div class="ai-thumb c3">T</div>
+              </a>
+           @endforeach
+           </div>
 
             </div>
             <div class="pagination">

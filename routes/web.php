@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->controller(HomeController::class)->group(function(){
    Route::get('/', 'index')->name('home');
-   Route::get('/about','about')->name('about');
-   Route::get('/articles','articles')->name('articles.index');
-   Route::get('/articles/{slug}','article')->name('articles.show');
-   Route::get('/categories','categories')->name('categories.index');
+   Route::get('about','about')->name('about');
+   Route::get('articles','articles')->name('articles.index');
+   Route::get('article/{slug}','article')->name('articles.show');
+   Route::get('categories','categories')->name('categories.index');
 });
 
 Route::prefix('dashboard')->controller(AdminController::class)->name('dashboard.')->group(function(){
@@ -20,3 +20,7 @@ Route::prefix('dashboard')->controller(AdminController::class)->name('dashboard.
     Route::get('/settings','settings')->name('settings');
     Route::get('/users','users')->name('users');
 });
+
+// Route::fallback(function(){
+//     return "<h1>404</h1>";
+// });
