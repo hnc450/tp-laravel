@@ -15,13 +15,12 @@ class HomeController extends Controller
     }
     public function articles(){
         $articles = Post::all();
-        dd($articles);
         return view('posts.articles',['articles' => $articles]);
     }
 
     public function article(string $slug){
         $article = Post::where('slug', $slug)->first();
-        // dd($article);
+        
         return view('posts.show', ['article' => $article]);
     }
     public function categories(){

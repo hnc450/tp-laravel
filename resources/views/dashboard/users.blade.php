@@ -19,7 +19,7 @@
         <div class="topbar">
             <div class="topbar-title">Utilisateurs</div>
             <div style="display:flex;gap:0.8rem">
-                <a href="index.html"
+                <a href="{{route('home')}}"
                     style="font-size:0.78rem;color:var(--muted);text-decoration:none;padding:0.45rem 1rem;border:1px solid var(--border)">↗
                     Voir le blog</a>
                 <button class="btn btn-primary" onclick="document.getElementById('createModal').classList.add('open')">+

@@ -12,40 +12,31 @@
 </head>
 
 <body>
-
-    <nav>
-        <a href="index.html" class="nav-logo">Le Blog</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="#">Articles</a></li>
-            <li><a href="#">Catégories</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-        </ul>
-    </nav>
-
+   @include('layouts.header')
+   
     <div class="article-hero">
         <div class="breadcrumb">
-            <a href="index.html">Accueil</a>
+            <a href="{{route('home')}}">Accueil</a>
             <span>/</span>
-            <a href="#">Articles</a>
+            <a href="{{route('articles.index')}}">Articles</a>
             <span>/</span>
             <a href="#">Optio</a>
             <span>/</span>
             <span>Excepturi eligendi...</span>
         </div>
         <div class="article-cat">Optio</div>
-        <h1 class="article-title">Excepturi eligendi aliquid iste laboriosam et soluta cum</h1>
+        <h1 class="article-title"> {{ $article->title }} </h1>
         <div class="article-meta-bar">
             <div class="author-block">
                 <div class="author-avatar">JL</div>
                 <div>
-                    <div class="author-name">Jacklyn Lueilwitz</div>
+                    <div class="author-name">{{$article->user->name}}</div>
                     <div class="author-sub">Auteur</div>
                 </div>
             </div>
-            <div class="meta-item"><strong>Publié le</strong> 15 juillet 2015</div>
-            <div class="meta-item"><strong>5</strong> commentaires</div>
-            <div class="meta-item"><strong>Catégorie :</strong> Optio</div>
+            <div class="meta-item"><strong>Publié le</strong> {{ $article->created_at->format('d F Y') }} </div>
+            <div class="meta-item"><strong>{{ $article->comment->count() }}</strong> commentaires</div>
+            <div class="meta-item"><strong>Catégorie :</strong> {{ $article->category->name }}</div>
             <button class="share-btn">↗ Partager</button>
         </div>
     </div>
@@ -56,36 +47,7 @@
                 explicabo. Non pariatur accusantium possimus molestiae et numquam est aperiam.</p>
 
             <div class="article-content">
-                <p>Excepturi consequuntur et voluptatem adipisci doloribus et. Tenetur eligendi earum qui sunt qui.
-                    Facilis unde iure perferendis commodi corrupti blanditiis earum. Harum veritatis qui ex animi
-                    perspiciatis laudantium.</p>
-
-                <p>Aut amet repellendus totam molestiae error. Doloremque qui aspernatur soluta laboriosam
-                    necessitatibus voluptas animi. Dolore sint ab voluptas qui eaque. Sed qui amet laborum nemo
-                    accusantium voluptatem placeat distinctio.</p>
-
-                <h2>Une perspective nouvelle</h2>
-
-                <p>Rem id et amet est. Nostrum ab inventore deserunt et fuga perferendis dolore. Quia nesciunt officia
-                    voluptatum delectus voluptatem dolorum et. Doloremque unde aut explicabo quidem illum id odio
-                    corrupti. Quas quas autem deleniti ut eveniet.</p>
-
-                <blockquote>
-                    "Ea officiis tempore dignissimos quia impedit rerum repudiandae et. Tenetur et et at. Sint omnis
-                    mollitia dolor veniam et et architecto."
-                </blockquote>
-
-                <p>Rerum aut id ipsum voluptatem quia doloremque. Excepturi consequuntur et voluptatem adipisci. Tenetur
-                    eligendi earum qui sunt qui facilis unde iure perferendis commodi corrupti blanditiis earum.</p>
-
-                <h2>Pour aller plus loin</h2>
-
-                <p>Harum veritatis qui ex animi perspiciatis laudantium. Aut amet repellendus totam molestiae error
-                    perspiciatis. Doloremque qui aspernatur soluta laboriosam necessitatibus voluptas animi culpa sit.
-                </p>
-
-                <p>Rem id et amet est inventore deserunt. Nostrum ab inventore deserunt et fuga perferendis dolore
-                    excepturi. Quia nesciunt officia voluptatum delectus voluptatem dolorum et ratione.</p>
+                <p> {{ $article->content }} </p>
             </div>
 
             <div class="article-tags">

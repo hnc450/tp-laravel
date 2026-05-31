@@ -537,7 +537,7 @@
     <div class="main">
         <div class="topbar">
             <div class="topbar-title">Réglages</div>
-            <a href="index.html"
+            <a href="{{ route('home') }}"
                 style="font-size:0.78rem;color:var(--muted);text-decoration:none;padding:0.45rem 1rem;border:1px solid var(--border)">↗
                 Voir le blog</a>
         </div>

@@ -443,7 +443,7 @@
         <div class="topbar">
             <div class="topbar-title">Dashboard</div>
             <div class="topbar-actions">
-                <a href="index.html" class="view-site">↗ Voir le blog</a>
+                <a href="{{route('home')}}" class="view-site">↗ Voir le blog</a>
             </div>
         </div>
 
