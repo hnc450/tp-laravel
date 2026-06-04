@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Blog — Accueil</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-</head>
-
-<body>
-    @include('layouts.header')
+@extends('app.app')
+@section('title','home')
+@section('content')
     <section class="hero">
         <div>
             <p class="hero-tag">Bienvenue sur notre blog</p>
@@ -98,16 +86,4 @@
             <p style="color:#5A4A38;font-size:0.72rem;margin-top:0.7rem">Pas de spam. Désabonnement en un clic.</p>
         </div>
     </div>
-
-    <footer>
-        <span>© 2026 Le Blog. Tous droits réservés.</span>
-        <div>
-            <a href="#">Mentions légales</a>
-            <a href="#">Confidentialité</a>
-            <a href="dashboard.html">Admin</a>
-        </div>
-    </footer>
-
-</body>
-
-</html>
+@endsection

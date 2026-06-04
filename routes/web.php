@@ -11,6 +11,8 @@ Route::prefix('/')->controller(HomeController::class)->group(function(){
    Route::get('articles','articles')->name('articles.index');
    Route::get('article/{slug}','article')->name('articles.show');
    Route::get('categories','categories')->name('categories.index');
+   Route::get('login','login')->name('connexion');
+   Route::post('sign','seConnecter')->name('login.post');
 });
 
 Route::prefix('dashboard')->controller(AdminController::class)->name('dashboard.')->group(function(){

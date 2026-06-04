@@ -155,6 +155,7 @@ class Category extends Model
 2. Comment accède-t-on au nombre d'articles d'une catégorie dans une vue Blade — quelle est la différence entre `$category->posts->count()` et `$category->posts()->count()` ?
 #R) $category->posts->count() , le 1er c est l attribut qui est une collection et l autre retourne un query builder sur laquelle on utilise la fonction count pour l aggregation.
 3. Qu'est-ce que le **chargement eager** (`with()`) et pourquoi est-il important pour éviter le problème des requêtes N+1 lors de l'affichage des catégories avec leur nombre d'articles ?
+#R)C'est le chargement en avance des relations d un model en une seule requete , on evite ça  pour des raisons des performances
 
 ---
 
@@ -217,8 +218,25 @@ Dynamisez la page principale du tableau de bord.
 **Questions :**
 
 1. Comment récupérer les 7 derniers articles insérés en base de données avec Eloquent ?
+```php
+  # 1
+  Post::orderByDesc('created_at')->limit(7)->get();
+
+  # 2
+  Post::latest()->take(7)->get();
+
+```
 2. Comment accède-t-on à une colonne spécifique d'un objet Eloquent dans une vue Blade — par exemple le titre d'un article ?
+```blade
+   {{ $article->title }}
+```
 3. Qu'est-ce que `$article->created_at` et comment le formater dans une vue Blade pour afficher une date lisible ?
+#R) ça renvoie la date  de creation de l article contenu dans la colonne created_at
+
+```blade
+ {{ $article->created_at->format('d M Y') }}
+
+```
 
 ---
 
@@ -233,8 +251,16 @@ Dynamisez la page de gestion des articles dans le dashboard.
 **Questions :**
 
 1. Comment récupérer les articles **avec leur catégorie associée** en une seule requête Eloquent (sans faire de requête supplémentaire pour chaque article) ?
+```php 
+    Post::with('category')->get();
+```
 2. Comment affiche-t-on le nom de la catégorie d'un article dans Blade si la relation `belongsTo` est définie sur le modèle `Post` ?
+```blade
+   {{ $article->category->name }}
+```
 3. Qu'est-ce qu'un **accesseur** (`get...Attribute`) en Eloquent et dans quel cas pourrait-il être utile ici ?
+
+#R) C'est une methode qui permet d acccer à un attribut d une classe , dans notre cas ca serait les attributs de nos models. Il peut etre utile dans le cas du formattage de la date par exemple en creant un getDateFormatAttribute()
 
 ---
 
@@ -251,6 +277,13 @@ Dynamisez les trois pages de gestion restantes du dashboard.
 **Questions :**
 
 1. Comment définit-on une relation `belongsTo` entre un commentaire et un article en Eloquent ?
+```php
+
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
+
+```
 2. Dans la page des commentaires, comment affiche-t-on le titre de l'article auquel appartient un commentaire, en supposant que la relation est correctement définie ?
 3. Quelle méthode Eloquent utilise-t-on pour récupérer **tous** les enregistrements d'une table sans condition ?
 

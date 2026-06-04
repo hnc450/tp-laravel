@@ -17,14 +17,14 @@ class AdminController extends Controller
             'posts' => Post::count(),
             'users' =>  User::count() ,
             'comments' => Comment::count(),
-            'articles' => Post::limit(5)->orderByDesc('created_at')->get()
+            'articles' => Post::limit(7)->orderByDesc('created_at')->get()
         ];
 
         return view('dashboard.index',$datas);
     }
 
     public function articles(){
-        $articles = Post::all();
+        $articles = Post::with('category')->get();
         return view('dashboard.articles', compact('articles'));
     }
 

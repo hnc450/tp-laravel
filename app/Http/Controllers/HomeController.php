@@ -64,6 +64,10 @@ class HomeController extends Controller
      
         return view('posts.categories', ['categories' => $categories]);
     }
+
+    public function login(){
+        return view('posts.login');
+    }
   
 
 }

@@ -23,7 +23,9 @@
                 Voir le blog</a>
         </div>
 
-        <div class="content">
+        <div class="con    public function post(){
+        return $this->belongsTo(Post::class);
+    }tent">
 
             <div class="stats-row">
                 <div class="stat-card">

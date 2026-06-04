@@ -3,6 +3,8 @@
     <div>
         <a href="#">Mentions légales</a>
         <a href="#">Confidentialité</a>
-        <a href="{{ route('dashboard.index') }}">Admin</a>
+        @auth
+         <a href="{{ route('dashboard.index') }}">Admin</a>
+        @endauth
     </div>
 </footer>

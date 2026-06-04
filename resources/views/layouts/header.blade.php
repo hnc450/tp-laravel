@@ -10,7 +10,7 @@
         @endauth
 
         @guest
-            <li><a href="#">Se connecter</a></li>
+            <li><a href="{{ route('connexion') }}">Se connecter</a></li>
            
         @endguest
       
