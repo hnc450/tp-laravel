@@ -34,7 +34,7 @@
 
             <div class="panel">
                 <div class="panel-header">
-                    <div class="panel-title">Tous les utilisateurs (305)</div>
+                    <div class="panel-title">Tous les utilisateurs ({{ $users->count() }})</div>
                 </div>
                 <table>
                     <thead>
@@ -48,7 +48,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+
+                        @forelse ($users as $user)
+                            <tr>
+                                <td class="text-muted">{{ $loop->iteration }}</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-init" style="background:#7B4F9E;color:#fff">{{ strtoupper(substr($user->name, 0, 2)) }}</div>{{ $user->name }}
+                                    </div>
+                                </td>
+                                <td class="text-muted">{{ $user->email }}</td>
+                                <td>
+                                 
+                                        <span class="verified">✓ Vérifié</span>
+                                </td>
+                                <td class="text-muted">{{ $user->created_at->format('d M Y') }}</td>
+                                <td>
+                                    <div class="actions"><button class="btn btn-edit"
+                                            onclick="openEdit('{{ $user->name }}','{{ $user->email }}')">Éditer</button><button
+                                            class="btn btn-danger">Suppr.</button></div>
+                                </td>
+                            </tr>  
+                            
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">Aucun utilisateur trouvé.</td>
+                            </tr>
+                            
+                        @endforelse
+                        {{-- <tr>
                             <td class="text-muted">1</td>
                             <td>
                                 <div class="user-cell">
@@ -64,8 +92,8 @@
                                         onclick="openEdit('Prof. Collin Predovic Jr.','jesus.wintheiser@example.com')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> --}}
+                        {{-- <tr>
                             <td class="text-muted">2</td>
                             <td>
                                 <div class="user-cell">
@@ -80,8 +108,8 @@
                                         onclick="openEdit('Mrs. Ima Metz','maude.graham@example.com')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> --}}
+                        {{-- <tr>
                             <td class="text-muted">6</td>
                             <td>
                                 <div class="user-cell">
@@ -97,8 +125,8 @@
                                         onclick="openEdit('Annetta Runolfsson','valentine11@example.org')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> --}}
+                        {{-- <tr>
                             <td class="text-muted">132</td>
                             <td>
                                 <div class="user-cell">
@@ -114,8 +142,8 @@
                                         onclick="openEdit('Jacklyn Lueilwitz','jacobi.vesta@example.com')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> --}}
+                        {{-- <tr>
                             <td class="text-muted">186</td>
                             <td>
                                 <div class="user-cell">
@@ -131,8 +159,8 @@
                                         onclick="openEdit('Dr. Travon Kirlin','gspinka@example.org')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> --}}
+                        {{-- <tr>
                             <td class="text-muted">246</td>
                             <td>
                                 <div class="user-cell">
@@ -148,8 +176,8 @@
                                         onclick="openEdit('Mrs. Tia Lemke','tamia85@example.org')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> --}}
+                        {{-- <tr>
                             <td class="text-muted">305</td>
                             <td>
                                 <div class="user-cell">
@@ -164,7 +192,7 @@
                                         onclick="openEdit('Mikel Lynch','sbraun@example.net')">Éditer</button><button
                                         class="btn btn-danger">Suppr.</button></div>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
                 <div class="pagination">

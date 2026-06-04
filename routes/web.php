@@ -21,6 +21,6 @@ Route::prefix('dashboard')->controller(AdminController::class)->name('dashboard.
     Route::get('/users','users')->name('users');
 });
 
-// Route::fallback(function(){
-//     return "<h1>404</h1>";
-// });
+Route::fallback(function(){
+    return view('layouts.404');
+});

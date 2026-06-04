@@ -5,6 +5,14 @@
         <li><a href="{{ route('articles.index') }}">Articles</a></li>
         <li><a href="{{ route('categories.index') }}">Catégories</a></li>
         <li><a href="{{ route('about') }}">À propos</a></li>
-        <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+        @auth
+              <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+        @endauth
+
+        @guest
+            <li><a href="#">Se connecter</a></li>
+           
+        @endguest
+      
     </ul>
 </nav>

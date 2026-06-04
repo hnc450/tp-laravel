@@ -76,7 +76,7 @@
                 <h3 class="article-title">{{ $article->title }}</h3>
                 <p class="article-excerpt">{{ substr($article->content, 0, 50) }}...</p>
                 <div class="article-meta">
-                    <span>Dr. Jenifer Sipes</span>
+                    <span>{{ $article->user->name }}</span>
                     <span>{{ $article->created_at->format('d M Y') }}</span>
                 </div>
             </a>

@@ -18,7 +18,7 @@
     <div class="page-header">
         <div class="page-tag">Blog</div>
         <h1 class="page-title">Tous les articles</h1>
-        <p class="page-count">50 articles publiés dans 5 catégories</p>
+        <p class="page-count">{{ $posts > 1 ? $posts . ' articles' : $posts . ' article' }} publiés dans {{ $category  > 1 ? $category . ' catégories' : $category . ' catégory' }}</p>
     </div>
 
     <div class="filters-bar">
@@ -76,11 +76,13 @@
         <aside class="sidebar-col">
             <div class="sidebar-block">
                 <div class="sidebar-label">Catégories</div>
-                <a href="#" class="cat-item">Vitae <span class="cat-count">10 articles</span></a>
-                <a href="#" class="cat-item">Dignissimos <span class="cat-count">10 articles</span></a>
-                <a href="#" class="cat-item">Optio <span class="cat-count">10 articles</span></a>
-                <a href="#" class="cat-item">Aperiam <span class="cat-count">10 articles</span></a>
-                <a href="#" class="cat-item">Tenetur <span class="cat-count">10 articles</span></a>
+                @forelse ($categories as $category)
+                    <a href="#" class="cat-item">{{ $category->name }} <span class="cat-count">{{ $category->posts->count() }} articles</span></a>
+                    
+                @empty
+                       <a href="#" class="cat-item">None<span class="cat-count">0 article</span></a>
+                @endforelse
+
             </div>
 
             <div class="sidebar-block">

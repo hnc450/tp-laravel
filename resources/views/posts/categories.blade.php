@@ -26,46 +26,36 @@
     <!-- HERO GRID -->
     
     <div class="cats-hero">
-        <a href="#vitae" class="cat-hero-card">
+
+        @forelse ($categories as  $category)
+            <a href="#{{ $category->slug }}" class="cat-hero-card">
+                <div class="ch-num">0{{ $loop->iteration }}</div>
+                <div>
+                    <div class="ch-name">{{ $category->name }}</div>
+                    <div class="ch-count">{{ $category->posts->count() > 1 ? $category->posts->count() . ' articles' : $category->posts->count() . ' article' }}</div>
+                    <div class="ch-arrow">→</div>
+                </div>
+            </a>
+            
+        @empty
+            <a href="#" class="cat-hero-card">
+                <div class="ch-num">01</div>
+                <div>
+                    <div class="ch-name">Aucune catégorie</div>
+                    <div class="ch-count">0 article</div>
+                    <div class="ch-arrow">→</div>
+                </div>
+            </a>
+        @endforelse
+        {{-- <a href="#vitae" class="cat-hero-card">
             <div class="ch-num">01</div>
             <div>
                 <div class="ch-name">Vitae</div>
                 <div class="ch-count">10 articles</div>
                 <div class="ch-arrow">→</div>
             </div>
-        </a>
-        <a href="#dignissimos" class="cat-hero-card">
-            <div class="ch-num">02</div>
-            <div>
-                <div class="ch-name">Dignissimos</div>
-                <div class="ch-count">10 articles</div>
-                <div class="ch-arrow">→</div>
-            </div>
-        </a>
-        <a href="#optio" class="cat-hero-card">
-            <div class="ch-num">03</div>
-            <div>
-                <div class="ch-name">Optio</div>
-                <div class="ch-count">10 articles</div>
-                <div class="ch-arrow">→</div>
-            </div>
-        </a>
-        <a href="#aperiam" class="cat-hero-card">
-            <div class="ch-num">04</div>
-            <div>
-                <div class="ch-name">Aperiam</div>
-                <div class="ch-count">10 articles</div>
-                <div class="ch-arrow">→</div>
-            </div>
-        </a>
-        <a href="#tenetur" class="cat-hero-card">
-            <div class="ch-num">05</div>
-            <div>
-                <div class="ch-name">Tenetur</div>
-                <div class="ch-count">10 articles</div>
-                <div class="ch-arrow">→</div>
-            </div>
-        </a>
+        </a> --}}
+    
     </div>
 
     <div class="cats-content">

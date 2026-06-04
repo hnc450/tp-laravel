@@ -449,33 +449,38 @@
 
         <div class="content">
             <div class="stats-grid">
+
                 <div class="stat-card">
                     <div class="stat-label">Articles publiés</div>
-                    <div class="stat-value">26</div>
-                    <div class="stat-change up">↑ Sur 50 total</div>
+                    <div class="stat-value">{{ $posts }}</div>
+                    {{-- <div class="stat-change up">↑ Sur 50 total</div> --}}
                 </div>
+
                 <div class="stat-card green">
                     <div class="stat-label">Commentaires</div>
-                    <div class="stat-value">250</div>
-                    <div class="stat-change">5 par article en moyenne</div>
+                    <div class="stat-value">{{ $comments }}</div>
+                    {{-- <div class="stat-change">5 par article en moyenne</div> --}}
                 </div>
+
                 <div class="stat-card orange">
                     <div class="stat-label">Utilisateurs</div>
-                    <div class="stat-value">305</div>
-                    <div class="stat-change up">↑ +12 ce mois</div>
+                    <div class="stat-value">{{ $users }}</div>
+                    {{-- <div class="stat-change up">↑ +12 ce mois</div> --}}
                 </div>
+
                 <div class="stat-card yellow">
                     <div class="stat-label">Catégories</div>
-                    <div class="stat-value">5</div>
-                    <div class="stat-change">10 articles / catégorie</div>
+                    <div class="stat-value">{{ $categories }}</div>
+                    {{-- <div class="stat-change">10 articles / catégorie</div> --}}
                 </div>
+
             </div>
 
             <div class="dash-grid">
                 <div class="panel">
                     <div class="panel-header">
                         <div class="panel-title">Articles récents</div>
-                        <a href="articles.html" class="panel-action">Voir tout →</a>
+                        <a href="{{route('dashboard.articles')}}" class="panel-action">Voir tout →</a>
                     </div>
                     <table>
                         <thead>
@@ -487,36 +492,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="truncate">Excepturi eligendi aliquid iste laboriosam</td>
-                                <td class="text-muted">Optio</td>
-                                <td><span class="badge badge-published">Publié</span></td>
-                                <td class="text-muted">15 jul. 2015</td>
-                            </tr>
-                            <tr>
-                                <td class="truncate">Aut repellat ut qui et</td>
-                                <td class="text-muted">Aperiam</td>
-                                <td><span class="badge badge-published">Publié</span></td>
-                                <td class="text-muted">8 oct. 2019</td>
-                            </tr>
-                            <tr>
-                                <td class="truncate">Dignissimos et eaque aut sed fugiat et</td>
-                                <td class="text-muted">Optio</td>
-                                <td><span class="badge badge-published">Publié</span></td>
-                                <td class="text-muted">23 sep. 1988</td>
-                            </tr>
-                            <tr>
-                                <td class="truncate">Aut eveniet libero autem voluptatum eos</td>
-                                <td class="text-muted">Optio</td>
-                                <td><span class="badge badge-draft">Brouillon</span></td>
-                                <td class="text-muted">—</td>
-                            </tr>
-                            <tr>
-                                <td class="truncate">Veritatis ut corrupti minus harum</td>
-                                <td class="text-muted">Optio</td>
-                                <td><span class="badge badge-published">Publié</span></td>
-                                <td class="text-muted">6 fév. 1984</td>
-                            </tr>
+                            @forelse ($articles as $article)
+                                <tr>
+                                    <td class="truncate">{{ $article->title }}</td>
+                                    <td class="text-muted">{{ $article->category->name }}</td>
+                                    <td><span class="badge badge-published">Publié</span></td>
+                                    <td class="text-muted">{{ $article->created_at->format('d M Y') }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">Aucun article récent</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

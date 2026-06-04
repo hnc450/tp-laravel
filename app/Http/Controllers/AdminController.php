@@ -3,19 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('dashboard.index');
+
+        $datas = [
+            'categories' =>  Category::count(),
+            'posts' => Post::count(),
+            'users' =>  User::count() ,
+            'comments' => Comment::count(),
+            'articles' => Post::limit(5)->orderByDesc('created_at')->get()
+        ];
+
+        return view('dashboard.index',$datas);
     }
 
     public function articles(){
-        return view('dashboard.articles');
+        $articles = Post::all();
+        return view('dashboard.articles', compact('articles'));
     }
 
     public function categories(){
-        return view('dashboard.categories');
+        $categories = Category::all();
+        return view('dashboard.categories', compact('categories'));
     }
 
     public function settings(){
@@ -23,6 +38,7 @@ class AdminController extends Controller
     }
 
     public function users(){
-        return view('dashboard.users');
+        $users = User::all();
+        return view('dashboard.users', compact('users'));
     }
 }
