@@ -20,18 +20,13 @@
             <p class="hero-desc">Un espace de réflexion, d'exploration et de partage. Nous publions des articles soignés
                 sur des sujets qui comptent vraiment.</p>
             <div class="hero-stats">
+                @foreach ($counts as $key => $count )
                 <div>
-                    <div class="stat-num">50</div>
-                    <div class="stat-label">Articles publiés</div>
+                    <div class="stat-num">{{ $count ?: 0 }}</div>
+                    <div class="stat-label">{{ ucfirst($key) === 'Articles' ? 'Articles publiés' : (ucfirst($key) === 'Comments' ? 'Commentaires' : 'Catégories') }}</div>
                 </div>
-                <div>
-                    <div class="stat-num">5</div>
-                    <div class="stat-label">Catégories</div>
-                </div>
-                <div>
-                    <div class="stat-num">250</div>
-                    <div class="stat-label">Commentaires</div>
-                </div>
+                @endforeach
+
             </div>
         </div>
         <div class="hero-visual">
@@ -57,60 +52,35 @@
     <section class="section" style="padding-bottom:0">
         <div class="section-header">
             <h2 class="section-title">Catégories</h2>
-            <a href="#" class="section-link">Voir toutes →</a>
+            <a href="{{route('categories.index')}}" class="section-link">Voir toutes →</a>
         </div>
         <div class="categories-row">
             <a href="#" class="cat-pill active">Tout</a>
-            <a href="#" class="cat-pill">Vitae</a>
-            <a href="#" class="cat-pill">Dignissimos</a>
-            <a href="#" class="cat-pill">Optio</a>
-            <a href="#" class="cat-pill">Aperiam</a>
-            <a href="#" class="cat-pill">Tenetur</a>
+            @foreach ($categories as $category )
+                <a href="#" class="cat-pill">{{ $category->name }}</a>
+            @endforeach
         </div>
     </section>
 
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">Derniers articles</h2>
-            <a href="#" class="section-link">Voir tout →</a>
+            <a href="{{ route('articles.index') }}" class="section-link">Voir tout →</a>
         </div>
         <div class="articles-grid">
-            <a href="article.html" class="article-card featured">
-                <div class="article-cat">Vitae &bull; À la une</div>
-                <h2 class="article-title">Excepturi eligendi aliquid iste laboriosam et soluta cum</h2>
-                <p class="article-excerpt">Recusandae non totam rerum vero at. Vel ut soluta ipsum nihil aut natus
-                    suscipit explicabo. Non pariatur accusantium possimus molestiae et numquam est aperiam. Excepturi
-                    consequuntur et voluptatem adipisci doloribus et. Tenetur eligendi earum qui sunt qui. Facilis unde
-                    iure perferendis commodi corrupti blanditiis earum.</p>
-                <div class="article-meta">
-                    <span>Jacklyn Lueilwitz</span>
-                    <span>15 juillet 2015</span>
-                    <span>5 commentaires</span>
-                </div>
-            </a>
-            <a href="article.html" class="article-card">
-                <div class="article-cat">Aperiam</div>
-                <h3 class="article-title">Aut repellat ut qui et</h3>
-                <p class="article-excerpt">Pariatur nobis dicta esse cum. Magni nesciunt facere exercitationem. Dolorum
-                    est facilis quia voluptatum architecto in quibusdam ex unde enim.</p>
-                <div class="article-meta">
-                    <span>Dr. Travon Kirlin</span>
-                    <span>8 oct. 2019</span>
-                </div>
-            </a>
-            <a href="article.html" class="article-card">
+
+          @foreach ($articles as $article )
+         
+            <a href="{{route('articles.show', ['slug' => $article->slug])}}" class="article-card">
                 <div class="article-cat">Optio</div>
-                <h3 class="article-title">Dignissimos et eaque aut sed fugiat et</h3>
-                <p class="article-excerpt">Voluptas quod nihil voluptatum animi voluptates mollitia sed. Perspiciatis
-                    blanditiis libero earum quod eos omnis. Placeat nesciunt ut ut eos.</p>
+                <h3 class="article-title">{{ $article->title }}</h3>
+                <p class="article-excerpt">{{ substr($article->content, 0, 50) }}...</p>
                 <div class="article-meta">
                     <span>Dr. Jenifer Sipes</span>
-                    <span>23 sept. 1988</span>
+                    <span>{{ $article->created_at->format('d M Y') }}</span>
                 </div>
             </a>
-
-        
-
+          @endforeach
         </div>
     </section>
 

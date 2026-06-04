@@ -24,6 +24,7 @@
     </div>
 
     <!-- HERO GRID -->
+    
     <div class="cats-hero">
         <a href="#vitae" class="cat-hero-card">
             <div class="ch-num">01</div>
