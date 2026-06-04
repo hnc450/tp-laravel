@@ -41,4 +41,8 @@ class AdminController extends Controller
         $users = User::all();
         return view('dashboard.users', compact('users'));
     }
+    public function comments(){
+        $comments = Comment::with('post')->get();
+        return view('dashboard.comments', compact('comments'));
+    }
 }

@@ -20,6 +20,7 @@ Route::prefix('dashboard')->controller(AdminController::class)->name('dashboard.
     Route::get('/articles','articles')->name('articles');
     Route::get('/categories','categories')->name('categories');
     Route::get('/settings','settings')->name('settings');
+    Route::get('/comments','comments')->name('comments');
     Route::get('/users','users')->name('users');
 });
 
