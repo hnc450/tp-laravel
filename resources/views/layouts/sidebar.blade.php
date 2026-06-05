@@ -31,8 +31,10 @@
         <div class="sidebar-user">
             <div class="user-avatar">A</div>
             <div>
-                <div class="user-name">Admin</div>
+                @auth 
+                <div class="user-name">{{ Auth::user()->name }}</div>
                 <div class="user-role">Super administrateur</div>
+               @endauth
             </div>
         </div>
     </div>

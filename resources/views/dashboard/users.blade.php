@@ -215,7 +215,10 @@
                 <button class="modal-close"
                     onclick="document.getElementById('createModal').classList.remove('open')">✕</button>
             </div>
+
+        <form action="{{route('dashboard.store.user')}}" method="post">
             <div class="modal-body">
+                @csrf
                 <div class="form-group">
                     <label class="form-label">Nom complet <span class="required">*</span></label>
                     <input type="text" class="form-control" name="name" placeholder="Prénom Nom" required>
@@ -232,7 +235,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Confirmation <span class="required">*</span></label>
-                        <input type="password" class="form-control" name="password_confirmation"
+                        <input type="password" class="form-control" name="confirmed"
                             placeholder="••••••••" required>
                     </div>
                 </div>
@@ -248,6 +251,7 @@
                     onclick="document.getElementById('createModal').classList.remove('open')">Annuler</button>
                 <button class="btn btn-primary">Créer l'utilisateur</button>
             </div>
+          </form>
         </div>
     </div>
 

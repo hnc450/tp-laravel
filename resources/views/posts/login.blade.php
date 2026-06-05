@@ -109,6 +109,11 @@
 <body>
   <div class="login-card">
     <h1>Connexion</h1>
+
+    @error('error')
+       <button>{{ $message }}</button>
+    @enderror
+   
     <form method="POST" action="{{ route('login.post') }}">
         @csrf
       <div class="form-group">

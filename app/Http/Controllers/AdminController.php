@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormUserRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
@@ -41,8 +42,16 @@ class AdminController extends Controller
         $users = User::all();
         return view('dashboard.users', compact('users'));
     }
+
     public function comments(){
         $comments = Comment::with('post')->get();
         return view('dashboard.comments', compact('comments'));
     }
+   
+
+    public function storeUser(FormUserRequest $request){
+        User::create($request->all());
+        return to_route('dashboard.users')->with('success', 'Utilisateur créé avec succès');
+    }
+    
 }
