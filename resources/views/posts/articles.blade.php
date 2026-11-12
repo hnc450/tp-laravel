@@ -49,14 +49,15 @@
                 @empty
                   <p>Aucun article trouvé</p>
                 @endforelse
+               
             </div>
+          
             <div class="pagination">
-                <a href="#" class="page-btn active">1</a>
-                <a href="#" class="page-btn">2</a>
-                <a href="#" class="page-btn">3</a>
-                <a href="#" class="page-btn">4</a>
-                <a href="#" class="page-btn">5</a>
-                <a href="#" class="page-btn">→</a>
+                @for ($i = 1 ; $i < $articles->lastPage(); $i++)
+                      <a href="{{$articles->path()}}?page={{$i}}" class="page-btn {{$i === $articles->currentPage() ? 'active' : ''}}">{{ $i }}</a>
+                @endfor
+              
+              
             </div>
         </div>
 

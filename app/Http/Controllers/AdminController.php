@@ -25,7 +25,7 @@ class AdminController extends Controller
     }
 
     public function articles(){
-        $articles = Post::with('category')->get();
+        $articles = Post::with('category')->paginate(20);
         return view('dashboard.articles', compact('articles'));
     }
 
@@ -39,12 +39,12 @@ class AdminController extends Controller
     }
 
     public function users(){
-        $users = User::all();
+        $users = User::paginate(20);
         return view('dashboard.users', compact('users'));
     }
 
     public function comments(){
-        $comments = Comment::with('post')->get();
+        $comments = Comment::with('post')->paginate(20);
         return view('dashboard.comments', compact('comments'));
     }
    

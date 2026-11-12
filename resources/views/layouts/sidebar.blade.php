@@ -26,6 +26,9 @@
         <a href="{{ route('dashboard.settings') }}" class="nav-item {{ request()->routeIs('dashboard.settings') ? 'active' : '' }}">
             <span>◻</span> Réglages
         </a>
+        <a href="{{ route('logout') }}" class="nav-item">
+            <span>⎋</span> Déconnexion
+        </a>
     </nav>
     <div class="sidebar-footer">
         <div class="sidebar-user">
@@ -33,7 +36,7 @@
             <div>
                 @auth 
                 <div class="user-name">{{ Auth::user()->name }}</div>
-                <div class="user-role">Super administrateur</div>
+                <div class="user-role">{{ Auth::user()->role->name }}</div>
                @endauth
             </div>
         </div>

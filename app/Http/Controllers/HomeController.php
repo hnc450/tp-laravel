@@ -40,7 +40,7 @@ class HomeController extends Controller
     }
     public function articles(){
 
-        $articles = Post::limit(10)->orderByDesc('id')->get();
+        $articles = Post::paginate(10);
         $categories = Category::limit(5)->get();
         $totalPost = Post::count();
         $totalCategories = Category::count();
